@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2019, all rights reserved.</copyright>
-    <lastBuildDate>Fri, 04 Oct 2019 21:27:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 12 Oct 2019 08:46:00 +0800</lastBuildDate>
     
 	<atom:link href="https://firslov.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>net</title>
+      <link>https://firslov.github.io/tags/net/</link>
+      <pubDate>Sat, 12 Oct 2019 08:46:00 +0800</pubDate>
+      
+      <guid>https://firslov.github.io/tags/net/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tech</title>
+      <link>https://firslov.github.io/tags/tech/</link>
+      <pubDate>Sat, 12 Oct 2019 08:46:00 +0800</pubDate>
+      
+      <guid>https://firslov.github.io/tags/tech/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>life</title>
@@ -18,24 +36,6 @@
       <pubDate>Fri, 04 Oct 2019 21:27:00 +0800</pubDate>
       
       <guid>https://firslov.github.io/tags/life/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tech</title>
-      <link>https://firslov.github.io/tags/tech/</link>
-      <pubDate>Fri, 04 Oct 2019 21:27:00 +0800</pubDate>
-      
-      <guid>https://firslov.github.io/tags/tech/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>net</title>
-      <link>https://firslov.github.io/tags/net/</link>
-      <pubDate>Fri, 04 Oct 2019 08:18:00 +0800</pubDate>
-      
-      <guid>https://firslov.github.io/tags/net/</guid>
       <description></description>
     </item>
     

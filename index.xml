@@ -7,10 +7,30 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2019, all rights reserved.</copyright>
-    <lastBuildDate>Fri, 04 Oct 2019 21:27:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 12 Oct 2019 08:46:00 +0800</lastBuildDate>
     
 	<atom:link href="https://firslov.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vue学习笔记01</title>
+      <link>https://firslov.github.io/posts/004/</link>
+      <pubDate>Sat, 12 Oct 2019 08:46:00 +0800</pubDate>
+      
+      <guid>https://firslov.github.io/posts/004/</guid>
+      <description>1.
+&#34; 1.
+ var vm = new Vue({ el: &#39;#app&#39;, data: { msg: &#39;123&#39;, msg2: &#39;我是一个h1&#39;, mytitle: &#39;自己定义的title&#39; }, methods: { show:function(){ alert(&#39;Hello!&#39;) } } })  1.
+ [v-cloak] { display: none; }  {{ msg }}
+1.
+xxx xxx 1.
+1.
+1.
+.stop 阻止事件冒泡 .prevent 阻止默认行为 .capture 捕获机制 .self 只有自身事件才会触发 .once 只触发一次
+1.
+1.
+这是个很大的h1！ 这也是个很大的h1！ 这个h1也很大！ 这个h1也很大！ 这个h1也很大！  var vm = new Vue({ el: &amp;lsquo;#app&amp;rsquo;, data: { flag: true, classobj: { red: true, thin: true, italic: false } } })</description>
+    </item>
     
     <item>
       <title>摄影学习</title>
