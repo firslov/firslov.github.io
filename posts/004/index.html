@@ -11,18 +11,7 @@
 
 <link rel="canonical" href="https://firslov.github.io/posts/004/">
 <meta property="og:title" content="Vue学习笔记01" />
-<meta property="og:description" content="1.
-&#34; 1.
- var vm = new Vue({ el: &#39;#app&#39;, data: { msg: &#39;123&#39;, msg2: &#39;我是一个h1&#39;, mytitle: &#39;自己定义的title&#39; }, methods: { show:function(){ alert(&#39;Hello!&#39;) } } })  1.
- [v-cloak] { display: none; }  {{ msg }}
-1.
-xxx xxx 1.
-1.
-1.
-.stop 阻止事件冒泡 .prevent 阻止默认行为 .capture 捕获机制 .self 只有自身事件才会触发 .once 只触发一次
-1.
-1.
-这是个很大的h1！ 这也是个很大的h1！ 这个h1也很大！ 这个h1也很大！ 这个h1也很大！  var vm = new Vue({ el: &lsquo;#app&rsquo;, data: { flag: true, classobj: { red: true, thin: true, italic: false } } })" />
+<meta property="og:description" content="1. &lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&quot;&gt;&lt;/script&gt; 2. &lt;script&gt; var vm = new Vue({ el: &#39;#app&#39;, data: { msg: &#39;123&#39;, msg2: &#39;&lt;h1&gt;我是一个h1&lt;/h1&gt;&#39;, mytitle: &#39;自己定义的title&#39; }, methods: { show:function(){ alert(&#39;Hello!&#39;) } } }) &lt;/script&gt; 3. &lt;!-- 使用 v-cloak 可以解决插值表达式闪烁问题 --&gt; &lt;style&gt; [v-cloak] { display: none; } &lt;/style&gt; &lt;p v-cloak&gt;{{ msg }}&lt;/p&gt; 4. &lt;!-- 默认 v-text 没有闪烁问题，但会替换元素中原本内容；插值表达式只会替换自己的占位符 --&gt; &lt;div v-text=&quot;msg2&quot;&gt;xxx&lt;/div&gt; &lt;div v-html=&quot;msg2&quot;&gt;xxx&lt;/div&gt; 5. &lt;!-- v-bind: 是vue中用于绑定属性的指令，简写是: --&gt; &lt;input type=&quot;button&quot; value=&quot;按钮&quot; v-bind:title=&quot;mytitle&quot; /&gt; &lt;input type=&quot;button&quot; value=&quot;按钮&quot; :title=&quot;mytitle&quot; /&gt; 6." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://firslov.github.io/posts/004/" />
 <meta property="article:published_time" content="2019-10-12T08:46:00+08:00" />
@@ -30,38 +19,16 @@ xxx xxx 1.
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Vue学习笔记01"/>
-<meta name="twitter:description" content="1.
-&#34; 1.
- var vm = new Vue({ el: &#39;#app&#39;, data: { msg: &#39;123&#39;, msg2: &#39;我是一个h1&#39;, mytitle: &#39;自己定义的title&#39; }, methods: { show:function(){ alert(&#39;Hello!&#39;) } } })  1.
- [v-cloak] { display: none; }  {{ msg }}
-1.
-xxx xxx 1.
-1.
-1.
-.stop 阻止事件冒泡 .prevent 阻止默认行为 .capture 捕获机制 .self 只有自身事件才会触发 .once 只触发一次
-1.
-1.
-这是个很大的h1！ 这也是个很大的h1！ 这个h1也很大！ 这个h1也很大！ 这个h1也很大！  var vm = new Vue({ el: &lsquo;#app&rsquo;, data: { flag: true, classobj: { red: true, thin: true, italic: false } } })"/>
+<meta name="twitter:description" content="1. &lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&quot;&gt;&lt;/script&gt; 2. &lt;script&gt; var vm = new Vue({ el: &#39;#app&#39;, data: { msg: &#39;123&#39;, msg2: &#39;&lt;h1&gt;我是一个h1&lt;/h1&gt;&#39;, mytitle: &#39;自己定义的title&#39; }, methods: { show:function(){ alert(&#39;Hello!&#39;) } } }) &lt;/script&gt; 3. &lt;!-- 使用 v-cloak 可以解决插值表达式闪烁问题 --&gt; &lt;style&gt; [v-cloak] { display: none; } &lt;/style&gt; &lt;p v-cloak&gt;{{ msg }}&lt;/p&gt; 4. &lt;!-- 默认 v-text 没有闪烁问题，但会替换元素中原本内容；插值表达式只会替换自己的占位符 --&gt; &lt;div v-text=&quot;msg2&quot;&gt;xxx&lt;/div&gt; &lt;div v-html=&quot;msg2&quot;&gt;xxx&lt;/div&gt; 5. &lt;!-- v-bind: 是vue中用于绑定属性的指令，简写是: --&gt; &lt;input type=&quot;button&quot; value=&quot;按钮&quot; v-bind:title=&quot;mytitle&quot; /&gt; &lt;input type=&quot;button&quot; value=&quot;按钮&quot; :title=&quot;mytitle&quot; /&gt; 6."/>
 
 
 <meta itemprop="name" content="Vue学习笔记01">
-<meta itemprop="description" content="1.
-&#34; 1.
- var vm = new Vue({ el: &#39;#app&#39;, data: { msg: &#39;123&#39;, msg2: &#39;我是一个h1&#39;, mytitle: &#39;自己定义的title&#39; }, methods: { show:function(){ alert(&#39;Hello!&#39;) } } })  1.
- [v-cloak] { display: none; }  {{ msg }}
-1.
-xxx xxx 1.
-1.
-1.
-.stop 阻止事件冒泡 .prevent 阻止默认行为 .capture 捕获机制 .self 只有自身事件才会触发 .once 只触发一次
-1.
-1.
-这是个很大的h1！ 这也是个很大的h1！ 这个h1也很大！ 这个h1也很大！ 这个h1也很大！  var vm = new Vue({ el: &lsquo;#app&rsquo;, data: { flag: true, classobj: { red: true, thin: true, italic: false } } })">
+<meta itemprop="description" content="1. &lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&quot;&gt;&lt;/script&gt; 2. &lt;script&gt; var vm = new Vue({ el: &#39;#app&#39;, data: { msg: &#39;123&#39;, msg2: &#39;&lt;h1&gt;我是一个h1&lt;/h1&gt;&#39;, mytitle: &#39;自己定义的title&#39; }, methods: { show:function(){ alert(&#39;Hello!&#39;) } } }) &lt;/script&gt; 3. &lt;!-- 使用 v-cloak 可以解决插值表达式闪烁问题 --&gt; &lt;style&gt; [v-cloak] { display: none; } &lt;/style&gt; &lt;p v-cloak&gt;{{ msg }}&lt;/p&gt; 4. &lt;!-- 默认 v-text 没有闪烁问题，但会替换元素中原本内容；插值表达式只会替换自己的占位符 --&gt; &lt;div v-text=&quot;msg2&quot;&gt;xxx&lt;/div&gt; &lt;div v-html=&quot;msg2&quot;&gt;xxx&lt;/div&gt; 5. &lt;!-- v-bind: 是vue中用于绑定属性的指令，简写是: --&gt; &lt;input type=&quot;button&quot; value=&quot;按钮&quot; v-bind:title=&quot;mytitle&quot; /&gt; &lt;input type=&quot;button&quot; value=&quot;按钮&quot; :title=&quot;mytitle&quot; /&gt; 6.">
 
 
 <meta itemprop="datePublished" content="2019-10-12T08:46:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-10-12T08:46:00&#43;08:00" />
-<meta itemprop="wordCount" content="107">
+<meta itemprop="wordCount" content="239">
 
 
 
@@ -112,131 +79,111 @@ xxx xxx 1.
 
 <article class="post">
     <h1 class="title"> Vue学习笔记01 </h1>
-    <div class="content"> <p>1.</p>
+    <div class="content"> <pre><code class="language-nil">1.
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&quot;&gt;&lt;/script&gt;
 
-<script src="<https://cdn.jsdelivr.net/npm/vue/dist/vue.js>"></script>
-
-<p>1.</p>
-
-<script>
-    var vm = new Vue({
-        el: '#app',
-        data: {
-            msg: '123',
-            msg2: '<h1>我是一个h1</h1>',
-            mytitle: '自己定义的title'
-        },
-        methods: {
-            show:function(){
-                alert('Hello!')
-            }
-        }
-    })
-</script>
-
-<p>1.</p>
-
-<!-- 使用 v-cloak 可以解决插值表达式闪烁问题 -->
-
-<p><style>
-    [v-cloak] {
-        display: none;
+2.
+&lt;script&gt;
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      msg: '123',
+      msg2: '&lt;h1&gt;我是一个h1&lt;/h1&gt;',
+      mytitle: '自己定义的title'
+    },
+    methods: {
+      show:function(){
+        alert('Hello!')
+      }
     }
-</style>
-<p v-cloak>{{ msg }}</p></p>
+  })
+&lt;/script&gt;
 
-<p>1.</p>
+3.
+&lt;!-- 使用 v-cloak 可以解决插值表达式闪烁问题 --&gt;
+&lt;style&gt;
+  [v-cloak] {
+    display: none;
+  }
+&lt;/style&gt;
+&lt;p v-cloak&gt;{{ msg }}&lt;/p&gt;
 
-<!-- 默认 v-text 没有闪烁问题，但会替换元素中原本内容；插值表达式只会替换自己的占位符 -->
+4.
+&lt;!-- 默认 v-text 没有闪烁问题，但会替换元素中原本内容；插值表达式只会替换自己的占位符 --&gt;
+&lt;div v-text=&quot;msg2&quot;&gt;xxx&lt;/div&gt;
+&lt;div v-html=&quot;msg2&quot;&gt;xxx&lt;/div&gt;
 
-<div v-text="msg2">xxx</div>
-<div v-html="msg2">xxx</div>
+5.
+&lt;!-- v-bind: 是vue中用于绑定属性的指令，简写是: --&gt;
+&lt;input type=&quot;button&quot; value=&quot;按钮&quot; v-bind:title=&quot;mytitle&quot; /&gt;
+&lt;input type=&quot;button&quot; value=&quot;按钮&quot; :title=&quot;mytitle&quot; /&gt;
 
-<p>1.</p>
+6.
+&lt;!-- Vue 中提供了 v-on: 事件绑定机制，简写是@ --&gt;
+&lt;input type=&quot;button&quot; value=&quot;按钮&quot; v-bind:title=&quot;mytitle&quot; v-on:click=&quot;show&quot;&gt;
 
-<!-- v-bind: 是vue中用于绑定属性的指令，简写是: -->
-
-<p><input type="button" value="按钮" v-bind:title="mytitle" />
-<input type="button" value="按钮" :title="mytitle" /></p>
-
-<p>1.</p>
-
-<!-- Vue 中提供了 v-on: 事件绑定机制，简写是@ -->
-
-<p><input type="button" value="按钮" v-bind:title="mytitle" v-on:click="show"></p>
-
-<p>1.</p>
-
-<!-- 事件修饰器，可串联 -->
-
-<p>.stop 阻止事件冒泡
+7.
+&lt;!-- 事件修饰器，可串联 --&gt;
+.stop 阻止事件冒泡
 .prevent 阻止默认行为
 .capture 捕获机制
 .self 只有自身事件才会触发
-.once 只触发一次</p>
+.once 只触发一次
 
-<p>1.</p>
+8.
+&lt;!-- 双向数据绑定 v-model ，只能用在表单元素中--&gt;
+&lt;!-- input(radio text adress email ...) select checkbox textarea --&gt;
+&lt;!-- v-bind 只能实现数据的单向绑定，从 M 绑定到 V --&gt;
+&lt;input type=&quot;text&quot; v-model=&quot;msg&quot; style=&quot;width:100%&quot; /&gt;
 
-<!-- 双向数据绑定 v-model ，只能用在表单元素中-->
+9.
+&lt;!-- class样式 --&gt;
+&lt;h1 class=&quot;red thin&quot;&gt;这是个很大的h1！&lt;/h1&gt;
+&lt;!-- 直接传递数组， class 需要 v-bind 进行数据绑定 --&gt;
+&lt;!-- 在数组中使用三元表达式 --&gt;
+&lt;h1 :class=&quot;['thin', 'italic', flag?'active':'']&quot;&gt;这也是个很大的h1！&lt;/h1&gt;
+&lt;!-- 数组中使用对象，代替三元表达式 --&gt;
+&lt;h1 :class=&quot;['thin', 'italic', {'active': flag}]&quot;&gt;这个h1也很大！&lt;/h1&gt;
+&lt;!-- 使用对象形式，对象属性可不带引号 --&gt;
+&lt;h1 :class=&quot;{red:true, thin:true, italic:false}&quot;&gt;这个h1也很大！&lt;/h1&gt;
+&lt;!-- vm.data 绑定 --&gt;
+&lt;h1 :class=&quot;classobj&quot;&gt;这个h1也很大！&lt;/h1&gt;
+&lt;script&gt;
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      flag: true,
+      classobj: {
+        red: true,
+        thin: true,
+        italic: false
+      }
+    }
+  })
+&lt;/script&gt;
 
-<!-- input(radio text adress email ...) select checkbox textarea -->
-
-<!-- v-bind 只能实现数据的单向绑定，从 M 绑定到 V -->
-
-<p><input type="text" v-model="msg" style="width:100%" /></p>
-
-<p>1.</p>
-
-<!-- class样式 -->
-
-<p><h1 class="red thin">这是个很大的h1！</h1>
-<!-- 直接传递数组， class 需要 v-bind 进行数据绑定 -->
-<!-- 在数组中使用三元表达式 -->
-<h1 :class="['thin', 'italic', flag?'active':'']">这也是个很大的h1！</h1>
-<!-- 数组中使用对象，代替三元表达式 -->
-<h1 :class="['thin', 'italic', {'active': flag}]">这个h1也很大！</h1>
-<!-- 使用对象形式，对象属性可不带引号 -->
-<h1 :class="{red:true, thin:true, italic:false}">这个h1也很大！</h1>
-<!-- vm.data 绑定 -->
-<h1 :class="classobj">这个h1也很大！</h1>
-<script>
-    var vm = new Vue({
-        el: &lsquo;#app&rsquo;,
-        data: {
-            flag: true,
-            classobj: {
-                red: true,
-                thin: true,
-                italic: false
-            }
-        }
-    })
-</script></p>
-
-<p>1.</p>
-
-<!-- style样式 -->
-
-<!-- v-bind 绑定属性 -->
-
-<p><h1 :style="{ color:'red', 'font-weight':'200' }">这是一个h1标题～</h1>
-<!-- data 上定义 -->
-<h1 :style="styleobj1">这是一个h1标题～</h1>
-<h1 :style="[ styleobj1, styleobj2 ]">这是一个h1标题～</h1>
-<script>
-    var vm = new Vue({
-        el: &lsquo;#app&rsquo;,
-        data: {
-            styleobj1: {
-                color: &lsquo;red&rsquo;,
-                &lsquo;font-weight&rsquo;: &lsquo;200&rsquo;
-            },
-            styleobj2: {
-                &lsquo;font-style&rsquo;: &lsquo;italic&rsquo;
-            }
-        }
-    })
-</script></p>
+10.
+&lt;!-- style样式 --&gt;
+&lt;!-- v-bind 绑定属性 --&gt;
+&lt;h1 :style=&quot;{ color:'red', 'font-weight':'200' }&quot;&gt;这是一个h1标题～&lt;/h1&gt;
+&lt;!-- data 上定义 --&gt;
+&lt;h1 :style=&quot;styleobj1&quot;&gt;这是一个h1标题～&lt;/h1&gt;
+&lt;h1 :style=&quot;[ styleobj1, styleobj2 ]&quot;&gt;这是一个h1标题～&lt;/h1&gt;
+&lt;script&gt;
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      styleobj1: {
+        color: 'red',
+        'font-weight': '200'
+      },
+      styleobj2: {
+        'font-style': 'italic'
+      }
+    }
+  })
+&lt;/script&gt;
+</code></pre>
  </div>
     <footer class="post-footer">
 
