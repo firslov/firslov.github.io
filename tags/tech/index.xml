@@ -7,19 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>Copyright (c) 2019, all rights reserved.</copyright>
-    <lastBuildDate>Sat, 12 Oct 2019 08:46:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 04 Oct 2019 21:27:00 +0800</lastBuildDate>
     
 	<atom:link href="https://firslov.github.io/tags/tech/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Vue学习笔记01</title>
-      <link>https://firslov.github.io/posts/004/</link>
-      <pubDate>Sat, 12 Oct 2019 08:46:00 +0800</pubDate>
-      
-      <guid>https://firslov.github.io/posts/004/</guid>
-      <description>1. &amp;lt;script src=&amp;quot;https://cdn.jsdelivr.net/npm/vue/dist/vue.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; 2. &amp;lt;script&amp;gt; var vm = new Vue({ el: &#39;#app&#39;, data: { msg: &#39;123&#39;, msg2: &#39;&amp;lt;h1&amp;gt;我是一个h1&amp;lt;/h1&amp;gt;&#39;, mytitle: &#39;自己定义的title&#39; }, methods: { show:function(){ alert(&#39;Hello!&#39;) } } }) &amp;lt;/script&amp;gt; 3. &amp;lt;!-- 使用 v-cloak 可以解决插值表达式闪烁问题 --&amp;gt; &amp;lt;style&amp;gt; [v-cloak] { display: none; } &amp;lt;/style&amp;gt; &amp;lt;p v-cloak&amp;gt;{{ msg }}&amp;lt;/p&amp;gt; 4. &amp;lt;!-- 默认 v-text 没有闪烁问题，但会替换元素中原本内容；插值表达式只会替换自己的占位符 --&amp;gt; &amp;lt;div v-text=&amp;quot;msg2&amp;quot;&amp;gt;xxx&amp;lt;/div&amp;gt; &amp;lt;div v-html=&amp;quot;msg2&amp;quot;&amp;gt;xxx&amp;lt;/div&amp;gt; 5. &amp;lt;!-- v-bind: 是vue中用于绑定属性的指令，简写是: --&amp;gt; &amp;lt;input type=&amp;quot;button&amp;quot; value=&amp;quot;按钮&amp;quot; v-bind:title=&amp;quot;mytitle&amp;quot; /&amp;gt; &amp;lt;input type=&amp;quot;button&amp;quot; value=&amp;quot;按钮&amp;quot; :title=&amp;quot;mytitle&amp;quot; /&amp;gt; 6.</description>
-    </item>
     
     <item>
       <title>摄影学习</title>
