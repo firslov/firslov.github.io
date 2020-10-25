@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-10-17 Sat 22:24 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My emacs config</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="少年皓" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="theme/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="theme/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">My emacs config</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgcc5f9f5">1. install</a></li>
+<li><a href="#org4eb32a6">2. lastest version</a></li>
+<li><a href="#org25ed26b">3. config file</a>
+<ul>
+<li><a href="#org2591356">3.1. entry file</a></li>
+<li><a href="#org8719777">3.2. packages</a>
+<ul>
+<li><a href="#org2f7d900">3.2.1. resources</a></li>
+<li><a href="#org65b1a14">3.2.2. load-path</a></li>
+<li><a href="#orgaf4e2a2">3.2.3. use-package</a></li>
+<li><a href="#org67e9e44">3.2.4. packages</a></li>
+<li><a href="#orgd92fc48">3.2.5. python</a></li>
+</ul>
+</li>
+<li><a href="#org40d1cbf">3.3. diff-sys</a>
+<ul>
+<li><a href="#orgda3f651">3.3.1. window-nt</a></li>
+<li><a href="#orgb36ba8c">3.3.2. darwin</a></li>
+</ul>
+</li>
+<li><a href="#org596405a">3.4. user-config</a>
+<ul>
+<li><a href="#orga06e883">3.4.1. config</a></li>
+<li><a href="#org1b2c28c">3.4.2. key-bind</a></li>
+<li><a href="#org52593bf">3.4.3. function</a></li>
+<li><a href="#orgdadbd4c">3.4.4. mode</a></li>
+<li><a href="#orga4721f9">3.4.5. transparency</a></li>
+</ul>
+</li>
+<li><a href="#org3ace2da">3.5. org</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcc5f9f5" class="outline-2">
+<h2 id="orgcc5f9f5"><span class="section-number-2">1</span> install</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+进入到家目录，执行：
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">git clone --depth=1 git@github.com:firslov/.emacs.d.git
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4eb32a6" class="outline-2">
+<h2 id="org4eb32a6"><span class="section-number-2">2</span> lastest version</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+以下为 demo 版，完整配置请移步： <a href="https://github.com:firslov/.emacs.d.git">https://github.com:firslov/.emacs.d.git</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org25ed26b" class="outline-2">
+<h2 id="org25ed26b"><span class="section-number-2">3</span> config file</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+entry file 即 .emacs.d 中的 init.el 文件，其余内容写在同目录 readme.org 中：
+</p>
+</div>
+<div id="outline-container-org2591356" class="outline-3">
+<h3 id="org2591356"><span class="section-number-3">3.1</span> entry file</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+<pre class="src src-sh">(require <span style="color: #8b2252;">'cl)</span>
+<span style="color: #8b2252;">(require '</span>org)
+(org-babel-load-file <span style="color: #8b2252;">"~/.emacs.d/readme.org"</span>)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org8719777" class="outline-3">
+<h3 id="org8719777"><span class="section-number-3">3.2</span> packages</h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
+<div id="outline-container-org2f7d900" class="outline-4">
+<h4 id="org2f7d900"><span class="section-number-4">3.2.1</span> resources</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">when</span> (&gt;= emacs-major-version 24)
+  (<span style="color: #a020f0;">require</span> '<span style="color: #008b8b;">package</span>)
+  (<span style="color: #a020f0;">setq</span> package-archives '((<span style="color: #8b2252;">"gnu"</span>   . <span style="color: #8b2252;">"http://elpa.emacs-china.org/gnu/"</span>)
+                           (<span style="color: #8b2252;">"melpa"</span> . <span style="color: #8b2252;">"http://elpa.emacs-china.org/melpa/"</span>)))
+  (package-initialize))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org65b1a14" class="outline-4">
+<h4 id="org65b1a14"><span class="section-number-4">3.2.2</span> load-path</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">let</span> ((sys system-type))
+  (<span style="color: #a020f0;">cond</span>
+   ((eq sys 'darwin) (add-to-list 'load-path <span style="color: #8b2252;">"~/.emacs.d/lisp/"</span>))
+   ((eq sys 'windows-nt) (add-to-list 'load-path <span style="color: #8b2252;">"e:/emacs/.emacs.d/lisp/"</span>))))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgaf4e2a2" class="outline-4">
+<h4 id="orgaf4e2a2"><span class="section-number-4">3.2.3</span> use-package</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">Add use-package</span>
+(<span style="color: #a020f0;">unless</span> (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org67e9e44" class="outline-4">
+<h4 id="org67e9e44"><span class="section-number-4">3.2.4</span> packages</h4>
+<div class="outline-text-4" id="text-3-2-4">
+</div>
+<ol class="org-ol">
+<li><a id="org15b80c4"></a>exec<br />
+<div class="outline-text-5" id="text-3-2-4-1">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">exec-path-from-shell</span>
+  <span style="color: #483d8b;">:ensure</span> t
+  <span style="color: #483d8b;">:config</span>
+  (<span style="color: #a020f0;">setq</span> exec-path-from-shell-arguments '(<span style="color: #8b2252;">"-l"</span>))
+  (<span style="color: #a020f0;">when</span> (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org2631df0"></a>swiper<br />
+<div class="outline-text-5" id="text-3-2-4-2">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">counsel</span>
+  <span style="color: #483d8b;">:ensure</span> t)
+(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">swiper</span>
+  <span style="color: #483d8b;">:ensure</span> t
+  <span style="color: #483d8b;">:bind</span> (
+         (<span style="color: #8b2252;">"C-s"</span> . swiper)
+         (<span style="color: #8b2252;">"M-n"</span> . next-error)
+         (<span style="color: #8b2252;">"M-p"</span> . previous-error)
+         (<span style="color: #8b2252;">"C-c C-r"</span> . ivy-resume)
+         (<span style="color: #8b2252;">"M-x"</span> . counsel-M-x)
+         (<span style="color: #8b2252;">"C-x C-f"</span> . counsel-find-file)
+         (<span style="color: #8b2252;">"&lt;f1&gt; f"</span> . counsel-describe-function)
+         (<span style="color: #8b2252;">"&lt;f1&gt; v"</span> . counsel-describe-variable)
+         (<span style="color: #8b2252;">"&lt;f1&gt; o"</span> . counsel-describe-symbol)
+         (<span style="color: #8b2252;">"&lt;f1&gt; l"</span> . counsel-find-library)
+         (<span style="color: #8b2252;">"C-c g"</span> . counsel-git)
+         (<span style="color: #8b2252;">"C-c j"</span> . counsel-git-grep)
+         )
+  <span style="color: #483d8b;">:config</span>
+  (ivy-mode 1)
+  (<span style="color: #a020f0;">setq</span> ivy-use-virtual-buffers t)
+  (<span style="color: #a020f0;">setq</span> enable-recursive-minibuffers t)
+  (<span style="color: #a020f0;">setq</span> ivy-use-virtual-buffers t)
+  (<span style="color: #a020f0;">setq</span> enable-recursive-minibuffers t))
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orga4f387c"></a>company<br />
+<div class="outline-text-5" id="text-3-2-4-3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">company</span>
+  <span style="color: #483d8b;">:ensure</span> t
+  <span style="color: #483d8b;">:config</span>
+  (add-hook 'after-init-hook 'global-company-mode))
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org20d1b08"></a>magit<br />
+<div class="outline-text-5" id="text-3-2-4-4">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">magit</span>
+  <span style="color: #483d8b;">:ensure</span> t)
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org05b0295"></a>neotree<br />
+<div class="outline-text-5" id="text-3-2-4-5">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">neotree</span>
+  <span style="color: #483d8b;">:ensure</span> t
+  <span style="color: #483d8b;">:config</span>
+  (<span style="color: #a020f0;">setq</span> neo-theme (<span style="color: #a020f0;">if</span> (display-graphic-p) 'icons 'arrow))
+  (<span style="color: #a020f0;">setq</span> projectile-switch-project-action 'neotree-projectile-action))
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org16e1b49"></a>undo-tree<br />
+<div class="outline-text-5" id="text-3-2-4-6">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">undo-tree</span>
+  <span style="color: #483d8b;">:ensure</span> t
+  <span style="color: #483d8b;">:config</span> (global-undo-tree-mode))
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orgf8279ef"></a>yasnippet<br />
+<div class="outline-text-5" id="text-3-2-4-7">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">yasnippet</span>
+  <span style="color: #483d8b;">:ensure</span> t
+  <span style="color: #483d8b;">:config</span>
+  (<span style="color: #a020f0;">setq</span> yas-snippet-dirs
+        '(<span style="color: #8b2252;">"~/.emacs.d/snippets"</span>))
+  (yas-global-mode 1))
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orgd8be255"></a>projectile<br />
+<div class="outline-text-5" id="text-3-2-4-8">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">projectile</span>
+  <span style="color: #483d8b;">:ensure</span> t
+  <span style="color: #483d8b;">:config</span>
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd <span style="color: #8b2252;">"C-c p"</span>) 'projectile-command-map)
+  (<span style="color: #a020f0;">setq</span> projectile-indexing-method 'native)
+  (<span style="color: #a020f0;">setq</span> projectile-completion-system 'ivy))
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orgfcea9b1"></a>misc packages<br />
+<div class="outline-text-5" id="text-3-2-4-9">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">recentf</span>
+  <span style="color: #483d8b;">:bind</span> (<span style="color: #8b2252;">"C-x C-r"</span> . recentf-open-files)
+  <span style="color: #483d8b;">:config</span>
+  (recentf-mode 1)
+  (<span style="color: #a020f0;">setq</span> recentf-max-menu-item 10))
+(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">restart-emacs</span>
+  <span style="color: #483d8b;">:ensure</span> t)
+(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">ace-window</span>
+  <span style="color: #483d8b;">:ensure</span> t
+  <span style="color: #483d8b;">:config</span>
+  (global-set-key [remap other-window] 'ace-window)
+  (custom-set-faces
+   '(aw-leading-char-face
+     ((t (<span style="color: #483d8b;">:inderit</span> ace-jump-face-foreground <span style="color: #483d8b;">:height</span> 3.0))))))
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgd92fc48" class="outline-4">
+<h4 id="orgd92fc48"><span class="section-number-4">3.2.5</span> python</h4>
+<div class="outline-text-4" id="text-3-2-5">
+</div>
+<ol class="org-ol">
+<li><a id="org626d3e0"></a>elpy<br />
+<div class="outline-text-5" id="text-3-2-5-1">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">elpy</span>
+  <span style="color: #483d8b;">:ensure</span> t
+  <span style="color: #483d8b;">:config</span>
+  (elpy-enable)
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">Use IPython for REPL</span>
+  (<span style="color: #a020f0;">setq</span> python-shell-interpreter <span style="color: #8b2252;">"jupyter"</span>
+        python-shell-interpreter-args <span style="color: #8b2252;">"console --simple-prompt"</span>
+        python-shell-prompt-detect-failure-warning nil)
+  (add-to-list 'python-shell-completion-native-disabled-interpreters
+               <span style="color: #8b2252;">"jupyter"</span>))
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orgacf8243"></a>py-autopep8<br />
+<div class="outline-text-5" id="text-3-2-5-2">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">py-autopep8</span>
+  <span style="color: #483d8b;">:ensure</span> t
+  <span style="color: #483d8b;">:config</span>
+  (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+  (<span style="color: #a020f0;">setq</span> py-autopep8-options '(<span style="color: #8b2252;">"--max-line-length=100"</span>)))
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org9c880d4"></a>flycheck<br />
+<div class="outline-text-5" id="text-3-2-5-3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">flycheck</span>
+  <span style="color: #483d8b;">:ensure</span> t
+  <span style="color: #483d8b;">:config</span>
+  (global-flycheck-mode)
+  (<span style="color: #a020f0;">setq</span> elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (add-hook 'elpy-mode-hook 'flycheck-mode))
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org57fdf5c"></a>ein<br />
+<div class="outline-text-5" id="text-3-2-5-4">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">use-package</span> <span style="color: #008b8b;">ein</span>
+  <span style="color: #483d8b;">:ensure</span> t)
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org40d1cbf" class="outline-3">
+<h3 id="org40d1cbf"><span class="section-number-3">3.3</span> diff-sys</h3>
+<div class="outline-text-3" id="text-3-3">
+</div>
+<div id="outline-container-orgda3f651" class="outline-4">
+<h4 id="orgda3f651"><span class="section-number-4">3.3.1</span> window-nt</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">when</span> (eq system-type 'windows-nt)
+  (<span style="color: #a020f0;">setq</span> conf_dir <span style="color: #8b2252;">"e:/emacs/.emacs.d/"</span>
+        org-directory <span style="color: #8b2252;">"e:/org/"</span>
+        init-file (concat conf_dir <span style="color: #8b2252;">"lisp/init-main.el"</span>)
+        init-sys (concat conf_dir <span style="color: #8b2252;">"lisp/windows-nt.el"</span>))
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">init fullscreen</span>
+  (add-to-list 'default-frame-alist '(fullscreen . maximized))
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">refresh startup function</span>
+  (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">show-startup-page</span>()
+    (<span style="color: #a020f0;">interactive</span>)
+    (org-agenda-list)
+    (org-agenda-day-view)
+    (neotree-dir <span style="color: #8b2252;">"e:/org/"</span>))
+  (add-hook 'window-setup-hook 'show-startup-page)
+  (<span style="color: #a020f0;">setq</span> display-buffer-alist
+        '((<span style="color: #8b2252;">"\\*e?shell\\*"</span>
+           (display-buffer-in-side-window)
+           (window-height . 0.2)
+           (side . bottom)
+           (slot . -1))
+          (<span style="color: #8b2252;">"\\*</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">(</span><span style="color: #8b2252;">Backtrace</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">Warnings</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">Compile-Log</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">[Hh]elp</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">Messages</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">)</span><span style="color: #8b2252;">\\*"</span>
+           (display-buffer-in-side-window)
+           (window-height . 0.25)
+           (side . bottom)
+           (slot . 0))
+          ))
+  )
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb36ba8c" class="outline-4">
+<h4 id="orgb36ba8c"><span class="section-number-4">3.3.2</span> darwin</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #a020f0;">when</span> (eq system-type 'darwin)
+  (<span style="color: #a020f0;">setq</span> conf_dir <span style="color: #8b2252;">"~/.emacs.d/"</span>
+        org-directory <span style="color: #8b2252;">"~/Documents/org/"</span>
+        init-file (concat conf_dir <span style="color: #8b2252;">"lisp/init-main.el"</span>)
+        init-sys (concat conf_dir <span style="color: #8b2252;">"lisp/darwin.el"</span>))
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">font</span>
+  (set-default-font <span style="color: #8b2252;">"MesloLGLDZ Nerd Font 15"</span>) 
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">refresh startup function</span>
+  (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">show-startup-page</span>()
+    (<span style="color: #a020f0;">interactive</span>)
+    (org-agenda-list)
+    (org-agenda-day-view)
+    (neotree-dir <span style="color: #8b2252;">"~/Documents/emacs/"</span>)
+    (other-window -1))
+  <span style="color: #b22222;">;; </span><span style="color: #b22222;">(add-hook 'window-setup-hook 'show-startup-page)</span>
+  (<span style="color: #a020f0;">setq</span> display-buffer-alist
+        '((<span style="color: #8b2252;">"\\*e?shell\\*"</span>
+           (display-buffer-in-side-window)
+           (window-height . 0.3)
+           (side . bottom)
+           (slot . -1))
+          (<span style="color: #8b2252;">"\\*</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">(</span><span style="color: #8b2252;">Backtrace</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">Warnings</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">Compile-Log</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">[Hh]elp</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">Messages</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">)</span><span style="color: #8b2252;">\\*"</span>
+           (display-buffer-in-side-window)
+           (window-height . 0.3)
+           (side . bottom)
+           (slot . 0))
+          ))
+  )
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org596405a" class="outline-3">
+<h3 id="org596405a"><span class="section-number-3">3.4</span> user-config</h3>
+<div class="outline-text-3" id="text-3-4">
+</div>
+<div id="outline-container-orga06e883" class="outline-4">
+<h4 id="orga06e883"><span class="section-number-4">3.4.1</span> config</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">&#21551;&#21160;&#39029;&#38754;</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">(setq initial-buffer-choice (concat org-directory "note.org"))</span>
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">&#20851;&#38381;&#27426;&#36814;&#30028;&#38754;</span>
+(<span style="color: #a020f0;">setq</span> inhibit-splash-screen t)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">fonts problem</span>
+(<span style="color: #a020f0;">setq</span> inhibit-compacting-font-caches t)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">Enable line numbers globally</span>
+(global-linum-mode t)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">disable alert voice</span>
+(<span style="color: #a020f0;">setq</span> ring-bell-function 'ignore)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">UI</span>
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+(<span style="color: #a020f0;">setq-default</span> cursor-type 'bar)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">&#35774;&#32622;&#40664;&#35748;&#35835;&#20837;&#25991;&#20214;&#32534;&#30721;</span>
+(prefer-coding-system 'gbk)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">&#35774;&#32622;&#20889;&#20837;&#25991;&#20214;&#32534;&#30721;</span>
+(<span style="color: #a020f0;">setq</span> default-buffer-file-coding-system 'gbk)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">disable backup</span>
+(<span style="color: #a020f0;">setq</span> make-backup-files nil)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">disable auto-save</span>
+(<span style="color: #a020f0;">setq</span> auto-save-default nil)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">yes-or-no y-or-n</span>
+(fset 'yes-or-no-p 'y-or-n-p)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">select input delete</span>
+(delete-selection-mode 1)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">highlight current line</span>
+(global-hl-line-mode 1)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">autoload change out of emacs</span>
+(global-auto-revert-mode 1)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">highlight in org-mode</span>
+(<span style="color: #a020f0;">setq</span> org-src-fontify-natively t)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">&#33258;&#21160;&#25442;&#34892;</span>
+(toggle-truncate-lines 1)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">emacs guess indent</span>
+(<span style="color: #a020f0;">setq</span> python-indent-guess-indent-offset nil) 
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1b2c28c" class="outline-4">
+<h4 id="org1b2c28c"><span class="section-number-4">3.4.2</span> key-bind</h4>
+<div class="outline-text-4" id="text-3-4-2">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">save all buffers</span>
+(global-set-key (kbd <span style="color: #8b2252;">"&lt;f12&gt;"</span>) 'org-save-all-org-buffers)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">&#32465;&#23450; &lt;f5&gt; &#38190;&#19978;</span>
+(global-set-key (kbd <span style="color: #8b2252;">"&lt;f5&gt;"</span>) 'youdao-dictionary-search-at-point)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">ibuffer</span>
+(global-set-key (kbd <span style="color: #8b2252;">"C-x C-b"</span>) 'ibuffer)
+<span style="color: #b22222;">;;</span><span style="color: #b22222;">show startup page</span>
+(global-set-key (kbd <span style="color: #8b2252;">"C-."</span>) 'show-startup-page)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">&#23558;&#20989;&#25968; load-init-file &#32465;&#23450;&#21040; &lt;f1&gt; 0 &#38190;&#19978;</span>
+(global-set-key (kbd <span style="color: #8b2252;">"&lt;f1&gt; 0"</span>) 'load-init)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">&#23558;&#20989;&#25968; open-init-file &#32465;&#23450;&#21040; &lt;f1&gt; 1 &#38190;&#19978;</span>
+(global-set-key (kbd <span style="color: #8b2252;">"&lt;f1&gt; 1"</span>) 'open-init-file)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">&#23558;&#20989;&#25968; indent-buffer &#32465;&#23450;&#21040; &lt;f8&gt; &#38190;&#19978;</span>
+(global-set-key (kbd <span style="color: #8b2252;">"&lt;f8&gt;"</span>) 'indent-buffer)
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">&#19978;&#19979;&#32763;&#21322;&#39029;</span>
+(global-set-key <span style="color: #8b2252;">"\M-n"</span> 'scroll-half-page-up)
+(global-set-key <span style="color: #8b2252;">"\M-p"</span> 'scroll-half-page-down)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org52593bf" class="outline-4">
+<h4 id="org52593bf"><span class="section-number-4">3.4.3</span> function</h4>
+<div class="outline-text-4" id="text-3-4-3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">&#24555;&#36895;&#25171;&#24320;&#37197;&#32622;&#25991;&#20214;</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">open-init-file</span>()
+  (<span style="color: #a020f0;">interactive</span>)
+  (find-file (concat conf_dir <span style="color: #8b2252;">"readme.org"</span>)))
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">&#24555;&#36895;&#21152;&#36733;&#37197;&#32622;&#25991;&#20214;</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">load-init</span>()
+  (<span style="color: #a020f0;">interactive</span>)
+  (org-babel-load-file (concat conf_dir <span style="color: #8b2252;">"readme.org"</span>)))
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">neotree list config-dir</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">nconf</span>()
+  (<span style="color: #a020f0;">interactive</span>)
+  (neotree-dir conf_dir)
+  (other-window -1))
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">format the buffer</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">indent-buffer</span>()
+  (<span style="color: #a020f0;">interactive</span>)
+  (indent-region (point-min) (point-max)))
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">&#32763;&#39029;</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">scroll-half-page-down</span> ()
+  <span style="color: #8b2252;">"scroll down half the page"</span>
+  (<span style="color: #a020f0;">interactive</span>)
+  (scroll-down (/ (window-body-height) 2)))
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">scroll-half-page-up</span> ()
+  <span style="color: #8b2252;">"scroll up half the page"</span>
+  (<span style="color: #a020f0;">interactive</span>)
+  (scroll-up (/ (window-body-height) 2)))
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">&#31383;&#21475;&#21551;&#21160;&#20301;&#32622;&#22823;&#23567;</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">init-my-frame</span> ()
+  (set-frame-position (selected-frame) 160 80)
+  (set-frame-width (selected-frame) 120)
+  (set-frame-height (selected-frame) 30))
+(add-hook 'after-init-hook 'init-my-frame)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdadbd4c" class="outline-4">
+<h4 id="orgdadbd4c"><span class="section-number-4">3.4.4</span> mode</h4>
+<div class="outline-text-4" id="text-3-4-4">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">blog mode</span>
+(<span style="color: #a020f0;">define-minor-mode</span> <span style="color: #0000ff;">blog-mode</span>
+  <span style="color: #8b2252;">"Toggle blog mode."</span>
+  <span style="color: #483d8b;">:global</span> nil
+  <span style="color: #483d8b;">:lighter</span> <span style="color: #8b2252;">"Blog"</span>)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga4721f9" class="outline-4">
+<h4 id="orga4721f9"><span class="section-number-4">3.4.5</span> transparency</h4>
+<div class="outline-text-4" id="text-3-4-5">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">@purcell</span>
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">sanityinc/adjust-opacity</span> (frame incr)
+  <span style="color: #8b2252;">"Adjust the background opacity of FRAME by increment INCR."</span>
+  (<span style="color: #a020f0;">unless</span> (display-graphic-p frame)
+    (<span style="color: #ff0000; font-weight: bold;">error</span> <span style="color: #8b2252;">"Cannot adjust opacity of this frame"</span>))
+  (<span style="color: #a020f0;">let*</span> ((oldalpha (<span style="color: #a020f0;">or</span> (frame-parameter frame 'alpha) 100))
+         (oldalpha (<span style="color: #a020f0;">if</span> (listp oldalpha) (car oldalpha) oldalpha))
+         (newalpha (+ incr oldalpha)))
+    (<span style="color: #a020f0;">when</span> (<span style="color: #a020f0;">and</span> (&lt;= frame-alpha-lower-limit newalpha) (&gt;= 100 newalpha))
+      (modify-frame-parameters frame (list (cons 'alpha newalpha))))))
+(global-set-key (kbd <span style="color: #8b2252;">"M-C-8"</span>) (<span style="color: #a020f0;">lambda</span> ()
+                                (<span style="color: #a020f0;">interactive</span>)
+                                (sanityinc/adjust-opacity nil -2)))
+(global-set-key (kbd <span style="color: #8b2252;">"M-C-9"</span>) (<span style="color: #a020f0;">lambda</span> ()
+                                (<span style="color: #a020f0;">interactive</span>)
+                                (sanityinc/adjust-opacity nil 2)))
+(global-set-key (kbd <span style="color: #8b2252;">"M-C-7"</span>) (<span style="color: #a020f0;">lambda</span> ()
+                                (<span style="color: #a020f0;">interactive</span>)
+                                (modify-frame-parameters nil `((alpha . 100)))))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org3ace2da" class="outline-3">
+<h3 id="org3ace2da"><span class="section-number-3">3.5</span> org</h3>
+<div class="outline-text-3" id="text-3-5">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">org variables</span>
+(<span style="color: #a020f0;">setq</span> org-agenda-files (list (concat org-directory <span style="color: #8b2252;">"todo.org"</span>))
+      org-agenda-skip-function-global '(org-agenda-skip-entry-if 'regexp <span style="color: #8b2252;">"\\* DONE</span><span style="color: #8b2252; font-weight: bold;">\\</span><span style="color: #8b2252; font-weight: bold;">|</span><span style="color: #8b2252;">\\* CANCELED"</span>)
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">org-agenda-skip-function-global '(org-agenda-skip-entry-if 'notregexp "\\* DONE\\|\\* CANCELED")</span>
+      org-agenda-show-future-repeats nil
+      org-deadline-warning-days 30
+      org-agenda-window-setup nil
+      org-M-RET-may-split-line '((headline . nil))
+      org-agenda-time-grid '((daily today require-timed)
+                             (600 800 1000 1200 1400 1600 1800 2000 2200)
+                             <span style="color: #8b2252;">"......"</span> <span style="color: #8b2252;">"----------------"</span>)
+      org-capture-templates
+      `((<span style="color: #8b2252;">"i"</span> <span style="color: #8b2252;">"Inbox"</span> entry (file ,(concat org-directory <span style="color: #8b2252;">"inbox.org"</span>))
+         <span style="color: #8b2252;">"* %?"</span>)
+        (<span style="color: #8b2252;">"j"</span> <span style="color: #8b2252;">"Journal"</span> entry (file+datetree ,(concat org-directory <span style="color: #8b2252;">"journal.org"</span>))
+         <span style="color: #8b2252;">"* %U\n%?"</span>)
+        <span style="color: #b22222;">;; </span><span style="color: #b22222;">("t" "Todo(deadline)" entry (file ,(concat org-directory "todo.org"))</span>
+        <span style="color: #b22222;">;; </span><span style="color: #b22222;">"* TODO %? %^G\nDEADLINE:%^t")</span>
+        <span style="color: #b22222;">;; </span><span style="color: #b22222;">("d" "Daily" entry (file ,(concat org-directory "todo.org"))</span>
+        <span style="color: #b22222;">;; </span><span style="color: #b22222;">"* DAILY %? %^G\nSCHEDULED:%^t")</span>
+        (<span style="color: #8b2252;">"a"</span> <span style="color: #8b2252;">"Arrangement"</span> entry (file ,(concat org-directory <span style="color: #8b2252;">"todo.org"</span>))
+         <span style="color: #8b2252;">"* %? %^T"</span>)
+        (<span style="color: #8b2252;">"t"</span> <span style="color: #8b2252;">"Todo"</span>)
+        (<span style="color: #8b2252;">"tt"</span> <span style="color: #8b2252;">"Todo without time"</span> entry (file ,(concat org-directory <span style="color: #8b2252;">"todo.org"</span>))
+         <span style="color: #8b2252;">"* TODO %?"</span>)
+        (<span style="color: #8b2252;">"ts"</span> <span style="color: #8b2252;">"Todo with SCHEDULED"</span> entry (file ,(concat org-directory <span style="color: #8b2252;">"todo.org"</span>))
+         <span style="color: #8b2252;">"* TODO %?\nSCHEDULED:%^t"</span>)
+        (<span style="color: #8b2252;">"td"</span> <span style="color: #8b2252;">"Todo with DEADLINE"</span> entry (file ,(concat org-directory <span style="color: #8b2252;">"todo.org"</span>))
+         <span style="color: #8b2252;">"* TODO %?\nDEADLINE:%^t"</span>))
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">org-refile-targets</span>
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">`((,(concat org-directory "note.org") :maxlevel . 2))</span>
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">`((,(concat org-directory "read.org") :maxlevel . 1)</span>
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">(,(concat org-directory "learn.org") :maxlevel . 1)</span>
+      <span style="color: #b22222;">;; </span><span style="color: #b22222;">(,(concat org-directory "emacs.org") :level . 1))</span>
+      org-todo-keywords
+      '((sequence <span style="color: #8b2252;">"TODO(t)"</span> <span style="color: #8b2252;">"CANCELED(c)"</span> <span style="color: #8b2252;">"|"</span> <span style="color: #8b2252;">"DONE(d)"</span>))
+      org-todo-keyword-faces
+      '((<span style="color: #8b2252;">"DAILY"</span> . <span style="color: #8b2252;">"green"</span>)
+        (<span style="color: #8b2252;">"CANCELED"</span> . <span style="color: #8b2252;">"grey"</span>)))
+<span style="color: #b22222;">;; </span><span style="color: #b22222;">set key</span>
+(define-key global-map <span style="color: #8b2252;">"\C-cc"</span> 'org-capture)
+(define-key global-map <span style="color: #8b2252;">"\M-q"</span> 'org-agenda)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 少年皓</p>
+<p class="date">Created: 2020-10-17 Sat 22:24</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

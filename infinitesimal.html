@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-10-24 Sat 11:34 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Infinitesimal, Gradient and Taylor series expansion</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="少年皓" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="theme/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="theme/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Infinitesimal, Gradient and Taylor series expansion</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org188f29c">1. 概述</a></li>
+<li><a href="#org4ae29d1">2. 函数的连续性、无穷小和导数</a>
+<ul>
+<li><a href="#org02b0dfa">2.1. 定义1：函数的连续性</a></li>
+<li><a href="#org2737757">2.2. 定义2：无穷小</a></li>
+<li><a href="#orga58530a">2.3. 定义3：导数与偏导数</a></li>
+</ul>
+</li>
+<li><a href="#org142405c">3. 梯度向量</a>
+<ul>
+<li><a href="#orgc3579b4">3.1. 定义4：方向导数</a></li>
+<li><a href="#org554476b">3.2. 定义5：可微与全微分</a></li>
+<li><a href="#orgb549ad6">3.3. 定义6：梯度向量</a></li>
+</ul>
+</li>
+<li><a href="#org626a71b">4. 泰勒展开</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org188f29c" class="outline-2">
+<h2 id="org188f29c"><span class="section-number-2">1</span> 概述</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>梯度方向是 <b>函数增加</b> 最快的方向</li>
+<li>负梯度方向是 <b>函数减小最快</b> 的方向</li>
+<li>与梯度正交的方向函数的 <b>变化率为零</b></li>
+<li>梯度为0只是函数取极值的 <b>必要条件而不是充分条件</b> ，梯度为0的点可能不是极值点</li>
+<li>泰勒展开 <b>用多项式去逼近其他函数</b> ，本质使用线性的多项式去逼近一些非线性函数</li>
+<li>泰勒展开用于近似值的计算，包含 <b>皮亚诺余项</b> 泰勒展开和 <b>拉格朗日余项</b> 泰勒展开两种</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4ae29d1" class="outline-2">
+<h2 id="org4ae29d1"><span class="section-number-2">2</span> 函数的连续性、无穷小和导数</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org02b0dfa" class="outline-3">
+<h3 id="org02b0dfa"><span class="section-number-3">2.1</span> 定义1：函数的连续性</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+设函数 \(y=f(x)\) 在某点 \(x_{0}\) 的某一邻域内有定义，如果
+\[
+   \lim _{\Delta x\to\infty}\Delta y=\lim _{\Delta x\to\infty}[f(x_{0}+\Delta x)-f(x_{0})]=0
+   \]
+那么就称 \(y=f(x)\) 在点 \(x_{0}\) 连续。
+</p>
+
+<p>
+注意：“不连续”指不能同时满足连续的三个条件：
+</p>
+<ul class="org-ul">
+<li>函数在该点处没有定义</li>
+<li>若函数在该点有定义，但函数在该点附近的极限不存在</li>
+<li>虽然函数在该点处有定义，极限也存在，但是二者不相等</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2737757" class="outline-3">
+<h3 id="org2737757"><span class="section-number-3">2.2</span> 定义2：无穷小</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+设 \(\lim f(x)=0,\lim g(x)=0\) ，且 \(\lim \frac{f(x)}{g(x)}=l\) 
+</p>
+<ul class="org-ul">
+<li>\(l=0\) ，称 \(f(x)\) 是比 \(g(x)\) 高阶的无穷小，记 \(f(x)=o(g(x))\)</li>
+<li>\(l\neq 0\) ，称 \(f(x)\) 是比 \(g(x)\) 同阶的无穷小</li>
+<li>\(l=1\) ，称 \(f(x)\) 是比 \(g(x)\) 等价的无穷小，记作 \(f(x)~g(x)\)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga58530a" class="outline-3">
+<h3 id="orga58530a"><span class="section-number-3">2.3</span> 定义3：导数与偏导数</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+对函数 \(y=f(x)\) ，在点 \(x=x_{0}\) 处给自变量 \(x\) 以增量 \(\Delta x\) ，函数 \(y\) 相应有增量 \(\Delta y=f(x_{0}+\Delta x)-f(x_{0})\) ，若极限
+\[
+   \lim _{\Delta x \rightarrow 0} \frac{\Delta y}{\Delta x}=\lim _{\Delta x \rightarrow 0} \frac{f\left(x_{0}+\Delta x\right)-f\left(x_{0}\right)}{\Delta x}
+   \]
+存在，则此极限称为 \(f(x)\) 在点 \(x_{0}\) 处的导数，也称 \(f(x)\) 在点 \(x_{0}\) 处的可导，记作：
+\[
+   f'(x_{0})
+   \]
+导函数：如果 \(f(x)\) 在区间 \((a,b)\) 内的每点都有导数，对于每个点都有一个确定的导数，从而构成一个新的函数，则这个函数称为 \(f(x)\) 在区间 \((a,b)\) 的导函数，记作 \(f'(x)\) 
+</p>
+
+<p>
+设函数 \(z=f(x,y)\) 在点 \(P_{0}(x_{0},y_{0})\) 的某一邻域内有定义，当 \(y\) 固定为 \(y_{0}\) ，而 \(x\) 从 \(x_{0}\) 改变到 \(x_{0}+\Delta x(\Delta x\neq0)\) 时，如果极限
+\[
+   \lim _{\Delta x \rightarrow 0} \frac{f\left(x_{0}+\Delta x, y_{0}\right)-f\left(x_{0}, y_{0}\right)}{\Delta x}
+   \]
+存在，则称此极限值为函数 \(z=f(x,y)\) 在点 \((x_{0},y_{0})\) 处对 \(x\) 的偏导数，记作
+\[
+   f_{x}^{\prime}\left(x_{0}, y_{0}\right), \quad \text { 或 }\left.\mathrm{z}_{x}\right|_{x=x_{0} \atop y=y_{0}}, \quad \text { 或 }\left.\frac{\partial f}{\partial x}\right|_{x=x_{0} \atop y=y_{0}}, \text { 或 }\left.\frac{\partial z}{\partial x}\right|_{x=x_{0} \atop y=y_{0}}
+   \]
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org142405c" class="outline-2">
+<h2 id="org142405c"><span class="section-number-2">3</span> 梯度向量</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgc3579b4" class="outline-3">
+<h3 id="orgc3579b4"><span class="section-number-3">3.1</span> 定义4：方向导数</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+设二元函数 \(z=f(x,y)\) 在点 \((x_{0},y_{0})\) 的邻域内有定义，其中向量 \(u\) 对应的单位向量 \(u^{\circ}=(\cos \alpha,\cos \beta)\) 其中 \(\alpha, \beta\) 为向量 \(u\) 的方向角，则当极限
+\[
+   \lim _{p \rightarrow 0^{+}} \frac{f\left(x_{0}+p \cos \alpha, y_{0}+p \cos \beta\right)-f\left(x_{0}, y_{0}\right)}{p}
+   \]
+存在时，则称该极限为函数 \(z=f(x,y)\) 在点 \((x_{0},y_{0})\) 处沿方向 \(u\) 的方向导数，记作
+\[
+   D_{u} f\left(x_{0}, y_{0}\right)=\left.\frac{\partial f(x, y)}{\partial \vec{u}}\right|_{\left(x_{0}, y_{0}\right)}
+   \]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org554476b" class="outline-3">
+<h3 id="org554476b"><span class="section-number-3">3.2</span> 定义5：可微与全微分</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+设函数 \(z=f(x,y)\) 在点 \(P_{0}(x_{0},y_{0})\) 的某邻域 \(U(P_{0})\) 上有定义，对于 \(U(P_{0})\) 中的点 \(P(x,y)=(x_{0}+\Delta x,y_{0}+\Delta y)\) ，若函数 \(f\) 在点 \(P_{0}\) 处的全增量 \(\Delta z\) 可表示为
+\[
+   \Delta z=f\left(x_{0}+\Delta x, y_{0}+\Delta y\right)-f\left(x_{0}, y_{0}\right)=A \Delta x+B \Delta y+o(\rho)
+   \]
+其中， \(A,B\) 是仅与点 \(P_{0}\) 有关的常数， \(\rho=\sqrt{\Delta x^{2}+\Delta y^{2}}\) ，\(o(\rho)\) 是较 \(\rho\) 的高阶无穷小量，则称函数 \(f\) 在点 \(P_{0}\) 可微。并称关于 \(\Delta x,\Delta y\) 的线性函数 \(A\Delta x+B\Delta y\) 为函数 \(f\) 在点 \(P_{0}\) 的全微分，记作
+\[
+   \left.d_{z}\right|_{p_{0}}=d f\left(x_{0}, y_{0}\right)=A \Delta x+B \Delta y=A d x+B d y
+   \]
+<b>定理：</b> 设函数 \(f(x,y)\) 在点 \(P(x_{0},y_{0})\) 可微，那么函数在该点沿任意方向向量 \(u\) 的方向导数都存在，且有
+</p>
+\begin{aligned}
+D_{u} f\left(x_{0}, y_{0}\right) &=f_{x}^{\prime}\left(x_{0}, y_{0}\right) \cos \alpha+f_{y}^{\prime}\left(x_{0}, y_{0}\right) \cos \beta \\
+&=\left(f_{x}^{\prime}\left(x_{0}, y_{0}\right), f_{y}^{\prime}\left(x_{0}, y_{0}\right)\right) \cdot(\cos \alpha, \cos \beta) \\
+&=\left(f_{x}^{\prime}\left(x_{0}, y_{0}\right), f_{y}^{\prime}\left(x_{0}, y_{0}\right)\right) \cdot \vec{e}_{\vec{u}}
+\end{aligned}
+<p>
+其中 \(\cos\alpha,\cos\beta\) 为向量 \(u\) 的方向余弦。
+</p>
+
+<p>
+一般地，当 \(f(x,y)\) 可微时，有：
+\[
+   D_{u} f\left(x_{0}, y_{0}\right)=\frac{\partial f}{\partial x} \cos \alpha+\frac{\partial f}{\partial y} \cos \beta
+   \]
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb549ad6" class="outline-3">
+<h3 id="orgb549ad6"><span class="section-number-3">3.3</span> 定义6：梯度向量</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+如果函数 \(f(x,y)\) 在点 \(P(x,y)\) 可微分，定义梯度：
+\[
+   \operatorname{grad} f(x, y)=\nabla f(x, y)=\left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}\right)=\frac{\partial f}{\partial x} i+\frac{\partial f}{\partial y} j
+   \]
+梯度向量具备以下性质：
+</p>
+<ul class="org-ul">
+<li>方向导数是梯度向量在 \(u\) 方向上的投影</li>
+<li>梯度方向是函数增加最快的方向</li>
+<li>负梯度方向是函数减小最快的方向</li>
+<li>与梯度正交的方向函数的变化率为零</li>
+<li>梯度为0只是函数取极值的必要条件而不是充分条件，即梯度为0的点可能不是极值点</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org626a71b" class="outline-2">
+<h2 id="org626a71b"><span class="section-number-2">4</span> 泰勒展开</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>泰勒展开用多项式去逼近其他函数，其实就是用线性的多项式去逼近一些非线性函数</li>
+<li>泰勒展开用于近似值的计算</li>
+</ul>
+
+<p>
+假设某个函数 \(f(x)\) 是无穷阶可微的，利用多项式去逼近 \(f(x)\) ，不妨考虑 \(x=0\) 处，有：
+\[
+  \lim _{x \rightarrow 0} \frac{f(x)-f(0)}{x-0}=f^{\prime}(0)
+  \]
+于是得到
+\[
+  f(x)=f(0)+f^{\prime}(0) x+o(x)
+  \]
+接着考虑二次项
+\[
+  f(x)=f(0)+f^{\prime}(0) x+k_{2} x^{2}+o\left(x^{2}\right)
+  \]
+利用洛必达法则可得
+\[
+  k_{2}=\lim _{x \rightarrow 0} \frac{f(x)-f(0)-f^{\prime}(0) x}{x^{2}}=\frac{f^{\prime \prime}(0)}{2}
+  \]
+重复上述过程，归纳得到：
+\[
+  f(x)=f(0)+k_{1} x+k_{2} x^{2}+\ldots+k_{n} x^{n}+o\left(x^{n}\right), k_{n}=\frac{f^{(n)}(0)}{n !}
+  \]
+换元后得到皮亚诺余项泰勒展开：
+\[
+  f(x)=f\left(x_{0}\right)+f^{\prime}\left(x_{0}\right)\left(x-x_{0}\right)+\frac{f^{\prime \prime}\left(x_{0}\right)}{2}\left(x-x_{0}\right)^{2}+\ldots+\frac{f^{(n)}\left(x_{0}\right)}{n !}\left(x-x_{0}\right)^{n}+o\left(\left(x-x_{0}\right)^{n}\right)
+  \]
+如果 \(x\) 与 \(x_{0}\) 相差较大时，则得到拉格朗日余项泰勒展开：
+\[
+  f(x)=f\left(x_{0}\right)+f^{\prime}\left(x_{0}\right)\left(x-x_{0}\right)+\frac{f^{\prime \prime}\left(x_{0}\right)}{2}\left(x-x_{0}\right)^{2}+\ldots+\frac{f^{(n)}\left(x_{0}\right)}{n !}\left(x-x_{0}\right)^{n}+\frac{f^{(n+1)}(\xi)}{(n+1) !}\left(x-x_{0}\right)^{n+1}
+  \]
+其中 \(\xi\)  介于 \(x\) 与 \(x_{0}\) 之间。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 少年皓</p>
+<p class="date">Created: 2020-10-24 Sat 11:34</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

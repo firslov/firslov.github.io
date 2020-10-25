@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-10-23 Fri 23:51 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Convex Optimization</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="少年皓" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="theme/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="theme/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Convex Optimization</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgf3afb19">1. 概述</a></li>
+<li><a href="#orge03808e">2. 预备知识</a>
+<ul>
+<li><a href="#org8ea2548">2.1. \(Hessian\) 矩阵</a></li>
+<li><a href="#orga769044">2.2. 矩阵的正定性</a></li>
+</ul>
+</li>
+<li><a href="#org384588b">3. 凸集和凸函数</a>
+<ul>
+<li><a href="#org944660c">3.1. 凸集</a></li>
+<li><a href="#org771167e">3.2. 仿射子空间</a></li>
+<li><a href="#org13f152d">3.3. 凸函数</a>
+<ul>
+<li><a href="#orgc191066">3.3.1. 判别方法1</a></li>
+<li><a href="#orgae5c7fb">3.3.2. 判别方法2</a></li>
+<li><a href="#orga92030a">3.3.3. 凸优化</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf3afb19" class="outline-2">
+<h2 id="orgf3afb19"><span class="section-number-2">1</span> 概述</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>一个最优化问题的可行域是 <b>凸集</b> ，并且目标函数是 <b>凸函数</b> ，则该问题为 <b>凸优化问题</b> 。</li>
+<li>凸集性质：
+<ul class="org-ul">
+<li>如果一个优化问题是 <b>不带约束</b> 的优化，则其优化变量的可行域是一个凸集。</li>
+<li>多个凸集的 <b>交集</b> 还是凸集，凸集的 <b>并集</b> 不是凸集。</li>
+<li>一组约束是 <b>线性等式</b> 约束，或 <b>线性不等式</b> 约束，则它确定的可行域都是凸集。</li>
+</ul></li>
+<li>凸集的判别方法：
+<ul class="org-ul">
+<li>一阶偏导构造不等式</li>
+<li>二阶偏导构造海森矩阵</li>
+</ul></li>
+<li>凸函数的 <b>非负线性组合</b> 是凸函数。</li>
+<li>对于 <b>凸优化问题</b> ，可以使用梯度下降得到全局最优解，还可以利用牛顿法和拟牛顿法。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge03808e" class="outline-2">
+<h2 id="orge03808e"><span class="section-number-2">2</span> 预备知识</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org8ea2548" class="outline-3">
+<h3 id="org8ea2548"><span class="section-number-3">2.1</span> \(Hessian\) 矩阵</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+海森矩阵 \((Hessian matrix)\) 是一个自变量为向量的实值函数 \(f(x_{1},x_{2},\dots,x_{n})\) 的二阶偏导数组成的方块矩阵，如果 \(f\) 的所有二阶导数都存在，那么 \(f\) 的海森矩阵即：
+</p>
+
+<p>
+\[
+   H(f)_{ij}(x)=D_{i}D_{j}f(x)=\begin{pmatrix}
+   \frac{\partial ^{2} f}{\partial ^{2} x_{1}} & \frac{\partial ^{2} f}{\partial x_{1} \partial x_{2}} & \dots & \frac{\partial ^{2} f}{\partial x_{1} \partial x_{n}} \\
+   \frac{\partial ^{2} f}{\partial x_{2} \partial x_{1}} & \frac{\partial ^{2} f}{\partial ^{2} x_{2}} & \dots & \frac{\partial ^{2} f}{\partial x_{2} \partial x_{n}} \\
+   \vdots & \vdots & \ddots & \vdots \\
+   \frac{\partial ^{2} f}{\partial x_{n} \partial x_{1}} & \frac{\partial ^{2} f}{\partial x_{n} \partial x_{2}} & \dots & \frac{\partial ^{2} f}{\partial ^{2} x_{n}}
+   \end{pmatrix}
+   \]
+</p>
+
+<p>
+该矩阵与函数 \(f\) 有如下关系：
+</p>
+<ul class="org-ul">
+<li>如果 \(Hessian\) 矩阵正定，函数有极小值</li>
+<li>如果 \(Hessian\) 矩阵负定，函数有极大值</li>
+<li>如果 \(Hessian\) 矩阵不定，则需进一步讨论</li>
+</ul>
+<p>
+注： \(Hessian\) 矩阵简写为 \(\nabla ^{2}f(x)\)
+</p>
+</div>
+</div>
+<div id="outline-container-orga769044" class="outline-3">
+<h3 id="orga769044"><span class="section-number-3">2.2</span> 矩阵的正定性</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+对于 \(n\) 阶矩阵 \(A\) ，对于任意非0的 \(n\) 维向量 \(x\) 都有
+\[
+   x^{T}Ax>0
+   \]
+则称矩阵 \(A\) 为正定矩阵。
+</p>
+
+<p>
+判断正定的常用方法有以下3种：
+</p>
+<ul class="org-ul">
+<li>矩阵的特征值全大于0</li>
+<li>矩阵的所有顺序主子式都大于0</li>
+<li>矩阵合同于单位阵 \(I\)</li>
+</ul>
+<p>
+同样的可以定义矩阵的半正定性、负定性和半负定性。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org384588b" class="outline-2">
+<h2 id="org384588b"><span class="section-number-2">3</span> 凸集和凸函数</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org944660c" class="outline-3">
+<h3 id="org944660c"><span class="section-number-3">3.1</span> 凸集</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+对于 \(n\) 维空间中的集合 \(C\) ，如果对集合中的任意两点 \(x\) 和 \(y\) ，以及实数 \(0\leq\theta\leq1\) ，都有：
+\[
+   \theta x+(1-\theta)y\in C
+   \]
+则称该集合为凸集。相应的，点 \(\theta x+(1-\theta)y\) 成为点 \(x\) 和 \(y\) 的凸组合。
+</p>
+<ul class="org-ul">
+<li>如果把这个集合画出来，其边界是凸的，没有凹进去的地方</li>
+<li>直观来看，把该集合中的任意两点用直线连起来，直线上的点都属于该集合</li>
+</ul>
+<p>
+\(n\) 维实向量空间 \(R^{n}\) ，显然如果 \(x,y\in R^{n}\) ，则有：
+\[
+   \theta x+(1-\theta)y\in R^{n}
+   \]
+意义：如果一个优化问题是不带约束的优化，则其优化变量的可行域是一个凸集。
+</p>
+
+<p>
+一个重要结论：多个凸集的交集还是凸集，凸集的并集不是凸集。
+</p>
+</div>
+</div>
+<div id="outline-container-org771167e" class="outline-3">
+<h3 id="org771167e"><span class="section-number-3">3.2</span> 仿射子空间</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+给定 \(m\) 行 \(n\) 列的矩阵 \(A\) 和 \(m\) 维向量 \(b\) ，仿射子空间定义为如下向量的集合：
+\[
+   \{x\in R^{n}:Ax=b\}
+   \]
+即非齐次线性方程组的解。
+</p>
+
+<p>
+可以证明：如果一组约束是线性等式约束，则它确定的可行域是一个凸集。
+</p>
+
+<p>
+假设 \(x,y\in R^{n}\) 并且：
+\[
+   Ax=b,Ay=b
+   \]
+对于任意 \(0\leq \theta\leq 1\) ，有：
+\[
+   A(\theta x+(1-\theta)y)=\theta Ax+(1-\theta)Ay=\theta b+(1-\theta)b=b
+   \]
+进一步定义线性不等式围成的区域的集合：
+\[
+   \{x\in R^{n}:Ax\leq b\}
+   \]
+也可以证明：一组约束是线性不等式约束，则它定义的可行域是凸集。
+</p>
+
+<p>
+对于任意的 \(x,y\in R^{n}\) ，并且 \(Ax\leq b,Ay\leq b\) ，如果 \(0\leq \theta\leq 1\) ，则有：
+\[
+   A(\theta x+(1-\theta)y)=\theta Ax+(1-\theta)Ay\leq\theta b+(1-\theta)b=b
+   \]
+优化问题中可能有多个等式和不等式约束，只要每个约束条件定义的可行域是凸集，则同时满足这些约束条件的可行域还是凸集。
+</p>
+</div>
+</div>
+<div id="outline-container-org13f152d" class="outline-3">
+<h3 id="org13f152d"><span class="section-number-3">3.3</span> 凸函数</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+设 \(f(x)\) 为定义在 \(n\) 维欧氏空间中某个凸集 \(S\) 上的函数，若对于任意介于0于1之间的实数 \(\alpha\) 以及 \(S\) 中任意不同的两点 \(x_{1}\) 和 \(x_{2}\) ，均有：
+\[
+   f(\alpha x_{1}+(1-\alpha)x_{2})\leq\alpha f(x_{1})+(1-\alpha)f(x_{2})
+   \]
+则称 \(f(x)\) 为定义在凸集 \(S\) 上的凸函数。
+</p>
+
+<p>
+凸函数有两种判别方法：
+</p>
+</div>
+<div id="outline-container-orgc191066" class="outline-4">
+<h4 id="orgc191066"><span class="section-number-4">3.3.1</span> 判别方法1</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+设 \(f(x)\) 在凸集 \(S\) 傻姑娘有一阶连续偏导数，则 \(f(x)\) 为 \(S\) 上的凸函数的充要条件为：对于任意不同两点 \(x_{1}\) 和 \(x_{2}\) ，均有
+\[
+    f(x_{2})\geq f(x_{1})+\nabla f(x_{1})^{T}(x_{2}-x_{1})
+    \]
+</p>
+</div>
+</div>
+<div id="outline-container-orgae5c7fb" class="outline-4">
+<h4 id="orgae5c7fb"><span class="section-number-4">3.3.2</span> 判别方法2</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<p>
+设 \(f(x)\) 在凸集 \(S\) 上有二阶连续偏导数，则 \(f(x)\) 为 \(S\) 上的凸函数的充要条件为： \(f(x)\) 的 \(Hessian\) 矩阵在 \(S\) 上处处半正定。
+</p>
+
+<p>
+一个重要结论是凸含糊的非负线性组合是凸函数，假设 \(f_{i}\) 是凸函数，并且 \(w_{i}\geq 0\) ，则：
+\[
+    f(x)=\sum_{i=1}^{k}w_{i}f_{i}(x)
+    \]
+也是凸函数。
+</p>
+</div>
+</div>
+<div id="outline-container-orga92030a" class="outline-4">
+<h4 id="orga92030a"><span class="section-number-4">3.3.3</span> 凸优化</h4>
+<div class="outline-text-4" id="text-3-3-3">
+<p>
+如果一个最优化问题的可行域是凸集，并且目标函数是凸函数，则该问题为凸优化问题。凸优化问题可以形式化的写成：
+\[
+    minf(x) \\
+    x\in C
+    \]
+其中 \(x\) 为优化变量； \(f\) 为凸目标函数； \(C\) 是优化变量的可行域，是一个凸集。
+</p>
+
+<p>
+通常情况下，我们用另外一个等价的形式：
+\[
+    minf(x) \\
+    g_{i}(x)\leq0,i=1,2,\dots ,m \\
+    h_{i}(x)=0,i=1,2,\dots,p
+    \]
+其中 \(g_{i}(x)\) 是不等式约束函数，为凸函数； \(h_{i}(x)\) 是等式约束函数，为仿射函数。
+</p>
+
+<p>
+<b>不加证明给出结论：线性回归、岭回归、支持向量机、逻辑回归、softmax回归都是凸优化问题，因此都可以利用梯度下降法、牛顿法、拟牛顿法求解其参数。</b>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 少年皓</p>
+<p class="date">Created: 2020-10-23 Fri 23:51</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
